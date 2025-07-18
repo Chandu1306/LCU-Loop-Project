@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LCU Loop Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    img {
+      width: 200px;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+    }
+
+    audio {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎬 Welcome to LCU Loop Project</h1>
+
+  <select id="movieSelect">
+    <option value="Vikram">Vikram</option>
+    <option value="Leo">Leo</option>
+    <option value="Khaidhi">Khaidhi</option>
+  </select>
+
+  <button onclick="showMovie()">Show</button>
+
+  <p id="result"></p>
+  <img id="movieImg" src="LCU.jpg" style="align-items: center;">
+
+  <audio id="bgMusic" controls style="display: none;"></audio>
+
+  <script>
+    function showMovie() {
+      const movie = document.getElementById("movieSelect").value;
+      const result = document.getElementById("result");
+      const movieImg = document.getElementById("movieImg");
+      const bgMusic = document.getElementById("bgMusic");
+
+      let facts = [];
+      let audioSrc = "";
+      let imgSrc = "";
+
+      switch(movie) {
+        case "Vikram":
+          result.innerText = "🔥 Vikram is a true LCU legend!";
+          imgSrc = "vikram.jpg";
+          audioSrc = "vikram.mp3";
+          facts = ["Kamal Haasan", "Beast intro scene", "Undercover cop"];
+          break;
+
+        case "Leo":
+          result.innerText = "🧊 Leo is fire and ice!";
+          imgSrc = "leo.jpg";
+          audioSrc = "leo.mp3";
+          facts = ["Pastry chef", "Vijay", "Bloody sweet"];
+          break;
+
+        case "Khaidhi":
+          result.innerText = "🔒 Khaidhi is raw and real!";
+          imgSrc = "khaithi.jpg";
+          audioSrc = "khaidhi.mp3";
+          facts = ["No songs", "Single night story", "Prison truck chase"];
+          break;
+      }
+
+      // Show image
+      movieImg.src = imgSrc;
+      movieImg.style.display = "block";
+
+      // Stop previous song before playing new one
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+      bgMusic.src = audioSrc;
+      bgMusic.style.display = "block";
+      bgMusic.play();
+
+      // Show facts using loop (console)
+      for (let i = 0; i < facts.length; i++) {
+        console.log("🎬 Fact " + (i + 1) + ": " + facts[i]);
+      }
+    }
+  </script>
+</body>
+</html>
